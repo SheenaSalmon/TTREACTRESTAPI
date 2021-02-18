@@ -11,6 +11,7 @@ function CourseContextProvider(props){
      const [authenticatedUser,setAuthenticatedUser] =useState(null);
      const [currentCourse,setCurrentCourse] = useState({});
      const [materials,setMaterials]=useState("");
+     const [description,setDescription]=useState("");
 
      const data = new Data();
 
@@ -53,6 +54,11 @@ function CourseContextProvider(props){
                 return <li key={course.id+i}>{material}</li>
             }
             ));}
+
+            if(course.description !== null)
+            {
+               setDescription(course.description)
+            }
         }
     }
 
@@ -61,6 +67,7 @@ function CourseContextProvider(props){
          courses:courses,
          currentCourse:currentCourse,
          materials:materials,
+         description:description,
          data:data,
          actions:{
              signIn:signIn,

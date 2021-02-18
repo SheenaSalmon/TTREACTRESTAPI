@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useMemo, useState} from "react"
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import ReactMarkdown from "react-markdown"
 
 import {CourseContext} from "./Context"
 //import Course from "./Course";
@@ -89,7 +90,7 @@ export default function  CourseDetail(props) {
               <p>By Joe Smith</p>
             </div>
             <div className="course--description">
-              {context.currentCourse.description}
+             <ReactMarkdown children={context.currentCourse.description}/> 
             </div>
           </div>
           </div>;
