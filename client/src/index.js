@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import "./styles/global.css";
 import App from './App';
+import {CourseContextProvider} from "./Context"
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <CourseContextProvider>
+     <App />
+  </CourseContextProvider>
+   
+  ,
   document.getElementById('root')
 );
 
