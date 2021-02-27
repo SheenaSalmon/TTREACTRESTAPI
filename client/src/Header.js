@@ -7,7 +7,7 @@ function Header(){
     const context=useContext(CourseContext);
 
     const loggedOut =<><Link className="signup" to="/signup">Sign Up</Link><Link className="signin" to="/signin">Sign In</Link></>;
-    const loggedIn =<><b>Welcome, {context.authenticatedUser && context.authenticatedUser.username}</b><Link to="/signout"> Sign Out</Link></>;
+    const loggedIn =<><b>Welcome, {context.authenticatedUser && context.authenticatedUser.firstName}</b><Link to="/signout"> Sign Out</Link></>;
 
     return(
         <div className="header">

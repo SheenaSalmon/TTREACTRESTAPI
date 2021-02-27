@@ -10,8 +10,7 @@ function CourseContextProvider(props){
 
      const [authenticatedUser,setAuthenticatedUser] =useState(null);
      const [currentCourse,setCurrentCourse] = useState({});
-     const [materials,setMaterials]=useState("");
-     const [description,setDescription]=useState("");
+   
 
      const data = new Data();
 
@@ -48,17 +47,6 @@ function CourseContextProvider(props){
             //console.log(`The course is ${Object.entries(course)} from in getCourseDetail`)
             await setCurrentCourse(course);
 
-            if (course.materialsNeeded !==null)
-           { setMaterials(course.materialsNeeded.split("*").filter((mat)=>mat !== "").map((material,i)=>
-            {
-                return <li key={course.id+i}>{material}</li>
-            }
-            ));}
-
-            if(course.description !== null)
-            {
-               setDescription(course.description)
-            }
         }
     }
 
@@ -66,8 +54,7 @@ function CourseContextProvider(props){
          authenticatedUser:authenticatedUser,
          courses:courses,
          currentCourse:currentCourse,
-         materials:materials,
-         description:description,
+        
          data:data,
          actions:{
              signIn:signIn,

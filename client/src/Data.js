@@ -14,19 +14,19 @@ export default class Data{
         const options={
               method,
               headers:{
-                  'Content-Type': 'application/json; charset'
+                  'Content-Type': 'application/json; charset=utf-8'
               }
           };
 
-          if(body !=null)
+          if(body !==null)
           {
               options.body =JSON.stringify(body);
           }
 
           if(reuqiresAuth)
           {
-              const encodeCredentials =btoa(`${credentials.username}:${credentials}`);
-              options.headers['Authorization']=`Basic ${encodeCredentials}`
+              const encodedCredentials =btoa(`${credentials.username}:${credentials.password}`);
+              options.headers['Authorization']=`Basic ${encodedCredentials}`
           }
 
           return fetch(url, options);
@@ -53,6 +53,7 @@ export default class Data{
     async createUser(user)
     {
         const response = await this.api('/users', 'POST', user);
+        console.log(`This is the user in data ${user.firstName}`)
 
         if(response.status === 201)
         {
