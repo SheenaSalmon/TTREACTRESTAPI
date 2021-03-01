@@ -33,7 +33,7 @@ export default function UserSignIn(props){
         if (user !==null)
         {
           props.history.push("/courses/1");
-          console.log(`The user is authenticated ${context.authenticatedUser.username}`)
+          console.log(`The user is authenticated ${context.authenticatedUser.firstName}`)
         }
         else
 

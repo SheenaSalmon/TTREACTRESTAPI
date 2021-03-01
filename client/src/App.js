@@ -10,6 +10,7 @@ import CourseDetail from "./CourseDetail"
 import UserSignIn from "./UserSignIn";
 import UserSignUp from "./UserSignUp"
 import UserSignOut from "./UserSignOut";
+import CreateCourse from "./CreateCourse";
 
 function App() {
 
@@ -21,11 +22,12 @@ function App() {
      <hr />
     <Switch>
       <Route exact path="/" component={Courses}/>
-
+      <Route  path="/courses/create" component={CreateCourse} />
       <Route path="/courses/:id" component={CourseDetail}/>
       <Route path="/signin"  component={UserSignIn}/>
       <Route path="/signup"  component={UserSignUp}/>
       <Route path="/signout" component={UserSignOut} />
+     
     </Switch>
 
       </Router>

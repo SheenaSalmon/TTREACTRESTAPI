@@ -73,6 +73,12 @@ export default class Data{
         }
     }
 
+    async createCourse(user,course)
+    {
+        const response = await this.api('/courses','POST',course,true,user);
+        console.log(`This is course response:${Object.entries(course)}`)
+    }
+
     async getCourses()
     {
             const response = await this.api('/courses','GET')
@@ -106,6 +112,8 @@ export default class Data{
                 throw new Error()
             }
     }
+
+
 
 
 

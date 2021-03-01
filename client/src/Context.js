@@ -10,6 +10,8 @@ function CourseContextProvider(props){
 
      const [authenticatedUser,setAuthenticatedUser] =useState(null);
      const [currentCourse,setCurrentCourse] = useState({});
+     const [password,setPassword]=useState(null);
+     const [username,setUserName]=useState(null);
    
 
      const data = new Data();
@@ -20,14 +22,28 @@ function CourseContextProvider(props){
 
          if(user !== null)
          {
-             setAuthenticatedUser(user)
+             setAuthenticatedUser(user);
+             setPassword(password);
+             setUserName(username);
+             console.log(`The authenticated user is ${Object.entries(authenticatedUser)}`);
+          
          }
+         return user;
          
 
      }
 
+     const createCourse= async (newCourse)=>
+     {
+           const course = await data.createCourse({"username":username,"password":password},{...newCourse,userId:authenticatedUser.id});
+          
+        
+     }
+
      const signOut =() =>{
          setAuthenticatedUser(null);
+         setUserName(null);
+         setPassword(null)
      }
 
      const loadCourses = async ()=>{
@@ -60,7 +76,8 @@ function CourseContextProvider(props){
              signIn:signIn,
              signOut:signOut,
              loadCourses:loadCourses,
-             getCourseDetail: getCourseDetail
+             getCourseDetail: getCourseDetail,
+             createCourse:createCourse
          }
      }
 

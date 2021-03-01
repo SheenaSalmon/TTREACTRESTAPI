@@ -12,7 +12,8 @@ function Header(){
     return(
         <div className="header">
         <div className="bounds">
-          <h1 className="header--logo"><Link exact to ="/">Courses</Link></h1>
+          <h1 className="header--logo"><Link  to ="/">Courses</Link></h1>
+          <p>{context.authenticatedUser? context.authenticatedUser.emailAddress : ""}</p>
           <nav>{context.authenticatedUser ? loggedIn : loggedOut}</nav>
         </div>
       </div>
