@@ -29,20 +29,21 @@ export default function UserSignIn(props){
     {
       e.preventDefault();
       context.actions.signIn(email,password).then((user)=>{
-        console.log(`This is the user ${user}`)
+       // console.log(`This is the user ${user}`)
         if (user !==null)
         {
-          props.history.push("/courses/1");
-          console.log(`The user is authenticated ${context.authenticatedUser.firstName}`)
+          //console.log(props);
+          props.history.push(props.history.goBack());
+         // console.log(`The user is authenticated ${context.authenticatedUser.firstName}`)
         }
         else
 
         {
           props.history.push("/")
         }
-      }).catch((error)=>{
-        console.log(error)
-      });
+      })
+      
+      
       
     }
 
@@ -55,12 +56,13 @@ export default function UserSignIn(props){
           <div>
 
 
-            <form onSubmit={handleSubmit}>
+            {/* //<form onSubmit={handleSubmit}> */}
+              <form>
               <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange}/></div>
               
               <div><input id="password" name="password" type="password" className="" placeholder="Password" value={password} onChange={handleChange}/></div>
               <div className="grid-100 pad-bottom">
-                  <button className="button" type="submit">Sign In</button>
+                  <button className="button" type="submit" onClick={(e)=>{handleSubmit(e)}}>Sign In</button>
                   <button className="button button-secondary" onClick={(e)=>{e.preventDefault(); props.history.push("/") }}>Cancel</button>
                 </div>
             </form>

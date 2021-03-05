@@ -79,6 +79,12 @@ export default class Data{
         console.log(`This is course response:${Object.entries(course)}`)
     }
 
+    async deleteCourse(user,course)
+    {
+        const response= await this.api(`/courses/${course.id}`,'DELETE',course,true,user);
+        return response;
+    }
+
     async getCourses()
     {
             const response = await this.api('/courses','GET')

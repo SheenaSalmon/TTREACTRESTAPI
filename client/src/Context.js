@@ -25,7 +25,7 @@ function CourseContextProvider(props){
              setAuthenticatedUser(user);
              setPassword(password);
              setUserName(username);
-             console.log(`The authenticated user is ${Object.entries(authenticatedUser)}`);
+             //`console.log(`The authenticated user is ${Object.entries(authenticatedUser)}`);
           
          }
          return user;
@@ -38,6 +38,25 @@ function CourseContextProvider(props){
            const course = await data.createCourse({"username":username,"password":password},{...newCourse,userId:authenticatedUser.id});
           
         
+     }
+
+     const deleteCourse= async ( course)=>
+     {
+         if(authenticatedUser){
+             if (authenticatedUser.id===course.User.id)
+       {await data.deleteCourse({username,password},course)
+       console.log(Object.entries(authenticatedUser))
+       console.log(Object.entries(course))}
+       else{
+           alert("You do not have permission to delete this course")
+       }
+
+    }
+
+       
+       else{
+           alert("Please log in");
+       }
      }
 
      const signOut =() =>{
@@ -77,7 +96,8 @@ function CourseContextProvider(props){
              signOut:signOut,
              loadCourses:loadCourses,
              getCourseDetail: getCourseDetail,
-             createCourse:createCourse
+             createCourse:createCourse,
+             deleteCourse
          }
      }
 

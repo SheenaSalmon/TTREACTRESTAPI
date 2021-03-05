@@ -18,7 +18,12 @@ export default function  CourseDetail(props) {
     },[])
    
     
-    
+    const deleteCourse=(course)=>{
+      context.actions.deleteCourse(course).then(()=>
+      props.history.push("/")
+      )
+
+    }
     const courseInfo=<div className="bounds course--detail">
           <div className="grid-66">
             <div className="course--header">
@@ -35,7 +40,7 @@ export default function  CourseDetail(props) {
     const courseHeader= <div className="actions--bar">
     <div className="bounds">
       <div className="grid-100"><span><Link className="button" to={`/courses/${context.currentCourse.id}/update`}>Update Course</Link>
-      <Link className="button" to="#">Delete Course</Link></span><Link className="button button-secondary" to="/">Return to List</Link></div>
+      <Link className="button" to="#" onClick={()=>{deleteCourse(context.currentCourse)}}>Delete Course</Link></span><Link className="button button-secondary" to="/">Return to List</Link></div>
     </div>
   </div>;
 
