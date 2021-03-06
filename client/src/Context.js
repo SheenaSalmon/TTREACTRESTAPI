@@ -40,6 +40,26 @@ function CourseContextProvider(props){
         
      }
 
+     const updateCourse= async (course)=>
+     {
+         if(authenticatedUser)
+           {
+               if(authenticatedUser.id===course.User.id)
+            
+            {const updatedCourse = await data.updateCourse({"username":username,"password":password},{...course,userId:authenticatedUser.id});}
+            else
+            {alert("You do not have permission to update this course")}
+        
+        
+        
+        }
+           else{
+               alert("please login");
+           }
+          
+        
+     }
+
      const deleteCourse= async ( course)=>
      {
          if(authenticatedUser){
@@ -97,7 +117,8 @@ function CourseContextProvider(props){
              loadCourses:loadCourses,
              getCourseDetail: getCourseDetail,
              createCourse:createCourse,
-             deleteCourse
+             deleteCourse,
+             updateCourse
          }
      }
 

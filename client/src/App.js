@@ -11,6 +11,7 @@ import UserSignIn from "./UserSignIn";
 import UserSignUp from "./UserSignUp"
 import UserSignOut from "./UserSignOut";
 import CreateCourse from "./CreateCourse";
+import UpdateCourse from "./UpdateCourse";
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
     <Switch>
       <Route exact path="/" component={Courses}/>
       <Route  path="/courses/create" component={CreateCourse} />
-      <Route path="/courses/:id" component={CourseDetail}/>
+      <Route exact path="/courses/:id" component={CourseDetail}/>
+      <Route path="/courses/:id/update" component={UpdateCourse}/>
       <Route path="/signin"  component={UserSignIn}/>
       <Route path="/signup"  component={UserSignUp}/>
       <Route path="/signout" component={UserSignOut} />
