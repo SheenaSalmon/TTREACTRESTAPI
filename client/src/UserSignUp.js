@@ -1,5 +1,6 @@
 import React,{useContext, useState} from "react";
-import {CourseContext} from "./Context"
+import {CourseContext} from "./Context";
+import ErrorDisplay from './ErrorsDisplay';
 import {Link} from "react-router-dom";
 
 export default function UserSignUp(props){
@@ -9,6 +10,7 @@ export default function UserSignUp(props){
     const [firstName,setFirstName]=useState("");
     const [lastName,setLastName]=useState("");
     const [confirmedPassword,setConfirmedPassword]=useState("");
+    const [errors,setErrors]=useState(null);
 
 
 
@@ -60,6 +62,8 @@ export default function UserSignUp(props){
 
       context.data.createUser(user).then((out)=>{
         console.log(`This is the user ${user.firstName} ${out}`)
+        console.log( Object.entries(out));
+        setErrors(out);
    
       }).catch((error)=>{
         console.log(error)
@@ -75,7 +79,7 @@ export default function UserSignUp(props){
 
           <div>
 
-
+            <ErrorDisplay errors={errors}/>
             <form onSubmit={handleSubmit}>
             <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={firstName} onChange={handleChange}/></div>
             <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value={lastName} onChange={handleChange}/></div>

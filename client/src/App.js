@@ -3,7 +3,7 @@ import React,{useEffect,useState} from "react"
 
 import axios from "axios";
 import {Link,BrowserRouter as  Router, Switch,Route}  from "react-router-dom"
-
+import PrivateRoute from './PrivateRoute'
 import Header from "./Header"
 import Courses from "./Courses"
 import CourseDetail from "./CourseDetail"
@@ -23,9 +23,9 @@ function App() {
      <hr />
     <Switch>
       <Route exact path="/" component={Courses}/>
-      <Route  path="/courses/create" component={CreateCourse} />
+      <PrivateRoute path="/courses/create" component={CreateCourse} />
       <Route exact path="/courses/:id" component={CourseDetail}/>
-      <Route path="/courses/:id/update" component={UpdateCourse}/>
+      <PrivateRoute path="/courses/:id/update" component={UpdateCourse}/>
       <Route path="/signin"  component={UserSignIn}/>
       <Route path="/signup"  component={UserSignUp}/>
       <Route path="/signout" component={UserSignOut} />

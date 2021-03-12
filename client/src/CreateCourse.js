@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import {CourseContext} from "./Context";
+import ErrorDisplay from './ErrorsDisplay';
 
 export default function CreateCourse(props) {
     const context =useContext(CourseContext);
@@ -7,6 +8,7 @@ export default function CreateCourse(props) {
     const [title,setTitle] =useState("");
     const [estimatedTime,setEstimatedTime]=useState("")
     const [materialsNeeded,setMaterialsNeeded]= useState("")
+    const [errors,setErrors]=useState(null);
 
     const handleChange=(e)=>  {
         switch (e.target.name) {
@@ -32,7 +34,17 @@ export default function CreateCourse(props) {
      
         e.preventDefault();
         const course ={description,title,estimatedTime,materialsNeeded}
-        context.actions.createCourse(course);
+        context.actions.createCourse(course).then((out)=>
+        
+        {
+         console.log(out);
+         setErrors(out);
+
+        });
+        // if (reply.length>0)
+        // {
+        //     setErrors(reply);
+        // }
     }
 
     return(
@@ -40,6 +52,8 @@ export default function CreateCourse(props) {
         <div className="bounds course--detail">
         <h1>Create Course</h1>
         <div>
+          {errors? <ErrorDisplay errors={errors} />:""}
+         
         
           <form onSubmit={handleSubmit}>
             <div className="grid-66">

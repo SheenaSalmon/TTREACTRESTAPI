@@ -33,7 +33,11 @@ export default function UserSignIn(props){
         if (user !==null)
         {
           //console.log(props);
-          props.history.push(props.history.goBack());
+          if (props.location.state)
+         { props.history.push(props.location.state.from.pathname);}
+         else{
+           props.history.push("/")
+         }
          // console.log(`The user is authenticated ${context.authenticatedUser.firstName}`)
         }
         else

@@ -1,5 +1,6 @@
 import React, { useContext, useState ,useEffect} from "react";
 import {CourseContext} from "./Context";
+import ErrorDisplay from './ErrorsDisplay';
 
 export default function UpdateCourse(props) {
     const context =useContext(CourseContext);
@@ -7,6 +8,7 @@ export default function UpdateCourse(props) {
     const [title,setTitle] =useState("");
     const [estimatedTime,setEstimatedTime]=useState("")
     const [materialsNeeded,setMaterialsNeeded]= useState("")
+    const [errors, setErrors]=useState(null);
 
 
     useEffect(()=>{
@@ -56,9 +58,11 @@ export default function UpdateCourse(props) {
         e.preventDefault();
         const course ={...context.currentCourse,description,title,estimatedTime,materialsNeeded};
         console.log(Object.entries(course));
-       context.actions.updateCourse(course).then(()=>
+       context.actions.updateCourse(course).then((out)=>
        {
-         props.history.push("/")
+          setErrors(out);
+          if(out.length <=0)
+         {props.history.push("/")}
        });
     }
 
@@ -67,7 +71,7 @@ export default function UpdateCourse(props) {
         <div className="bounds course--detail">
         <h1>Update Course</h1>
         <div>
-        
+        {errors? <ErrorDisplay errors={errors} />:""}
           <form onSubmit={handleSubmit}>
             <div className="grid-66">
               <div className="course--header">

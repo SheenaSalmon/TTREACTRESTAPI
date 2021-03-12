@@ -76,13 +76,46 @@ export default class Data{
     async createCourse(user,course)
     {
         const response = await this.api('/courses','POST',course,true,user);
-        console.log(`This is course response:${Object.entries(course)}`)
+
+
+        if(response.status === 201)
+        {
+            return [];
+        }
+        else if(response.status === 400)
+        {
+            return response.json().then( 
+                data=>
+                {
+                    return data.errors;
+                }
+            )
+        }
+        else{
+            throw new Error();
+        }
+        //console.log(`This is course response:${Object.entries(course)}`)
     }
 
     async updateCourse(user,course)
     {
         const response = await this.api(`/courses/${course.id}`,'PUT',course,true,user);
-        console.log(`This is course response:${Object.entries(course)}`)
+        if(response.status===204)
+        {
+            console.log(`This is course response:${Object.entries(course)}`)
+            return []
+        }
+
+        else if (response.status === 400)
+        {
+            return response.json().then( 
+                data=>
+                {
+                    return data.errors;
+                }
+            ) 
+        }
+       
     }
 
     async deleteCourse(user,course)
