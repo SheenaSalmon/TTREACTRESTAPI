@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import ReactMarkdown from "react-markdown"
 
 import {CourseContext} from "./Context"
-//import Course from "./Course";
+
 
 export default function  CourseDetail(props) {
     const context=useContext(CourseContext);
