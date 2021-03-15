@@ -13,7 +13,7 @@ export default function UserSignUp(props){
     const [errors,setErrors]=useState(null);
 
 
-
+  //update with form field changes
     const handleChange=(e)=>{
       
      switch(e.target.name)
@@ -37,8 +37,10 @@ export default function UserSignUp(props){
            break;
         
      }
-     console.log(`${password}  ${email}`)
+     //console.log(`${password}  ${email}`)
     }
+
+
 
     const handleSubmit=(e)=>
     {
@@ -59,17 +61,36 @@ export default function UserSignUp(props){
     // }
 
 
-
+      //Create the User
       context.data.createUser(user).then((out)=>{
         console.log(`This is the user ${user.firstName} ${out}`)
         console.log( Object.entries(out));
-        setErrors(out);
-   
-      }).catch((error)=>{
-        console.log(error)
-      });
+        if( out.length>0)
+        {setErrors(out);}//add all th errors to the errors state
+        else{  
+          
+            context.actions.signIn(email,password).then((user)=>{
+            // console.log(`This is the user ${user}`)
+              if (user !==null)
+              {
+               //console.log(props);
+                if (props.location.state)
+                { 
+                props.history.push(props.location.state.from.pathname);
+                }
+                else{
+                props.history.push("/")
+                }
+                //props.history.push("/")
+              }   
+            })
+            .catch((error)=>{
+              console.log(error)
+            });
       
     }
+  })
+}
 
     return(
         <div className="bounds">
@@ -78,8 +99,8 @@ export default function UserSignUp(props){
           
 
           <div>
-
-            <ErrorDisplay errors={errors}/>
+      {/* Display the Errors */}
+            <ErrorDisplay errors={errors}/> 
             <form onSubmit={handleSubmit}>
             <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={firstName} onChange={handleChange}/></div>
             <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value={lastName} onChange={handleChange}/></div>

@@ -33,6 +33,21 @@ function CourseContextProvider(props){
 
      }
 
+     const createUser= async (user)=>{ 
+         
+        
+        await data.createUser(user).then((out)=> {
+            if (out && out.length > 0)
+            {
+                return out;
+            }
+            else{
+                signIn(user.email,user.password);
+                return out;
+            }
+        })
+    }
+
      const createCourse= async (newCourse)=>
      {
            const course = await data.createCourse({"username":username,"password":password},{...newCourse,userId:authenticatedUser.id});

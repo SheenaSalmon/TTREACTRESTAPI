@@ -37,10 +37,12 @@ export default function  CourseDetail(props) {
           </div>
           </div>;
     
+    //if(authenticatedUser.id===course.User.id)
+
     const courseHeader= <div className="actions--bar">
     <div className="bounds">
       <div className="grid-100">{
-        context.authenticatedUser? <span><Link className="button" to={`/courses/${context.currentCourse.id}/update`}>Update Course</Link>
+        (context.authenticatedUser && context.authenticatedUser.id==context.currentCourse.User.id)? <span><Link className="button" to={`/courses/${context.currentCourse.id}/update`}>Update Course</Link>
       <Link className="button" to="#" onClick={()=>{deleteCourse(context.currentCourse)}}>Delete Course</Link></span>:""}
       <Link className="button button-secondary" to="/">Return to List</Link></div>
     </div>

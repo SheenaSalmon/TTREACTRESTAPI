@@ -1,7 +1,7 @@
 
 import React,{useEffect,useState} from "react"
 
-import axios from "axios";
+
 import {Link,BrowserRouter as  Router, Switch,Route}  from "react-router-dom"
 import PrivateRoute from './PrivateRoute'
 import Header from "./Header"

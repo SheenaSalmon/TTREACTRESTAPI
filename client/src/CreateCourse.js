@@ -34,17 +34,21 @@ export default function CreateCourse(props) {
      
         e.preventDefault();
         const course ={description,title,estimatedTime,materialsNeeded}
-        context.actions.createCourse(course).then((out)=>
-        
+        context.actions.createCourse(course).then((out)=>        
         {
          console.log(out);
-         setErrors(out);
+         if (out && out.length>0)
+         {setErrors(out);}
+         else
+         {
+          props.history.push("/")
+         }
+
+        }).catch((error)=>{
+          console.log(error)
 
         });
-        // if (reply.length>0)
-        // {
-        //     setErrors(reply);
-        // }
+        
     }
 
     return(
