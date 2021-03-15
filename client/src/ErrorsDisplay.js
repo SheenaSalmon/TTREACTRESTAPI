@@ -1,6 +1,6 @@
+import React from 'react'
 
-import React, {useState,useContext}from 'react'
-
+//Component renders the validation errors that are sent via props
 export default function ErrorsDisplay(props) {
     let errorsDisplay =null;
     const errors=props.errors;

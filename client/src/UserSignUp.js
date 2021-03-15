@@ -37,7 +37,7 @@ export default function UserSignUp(props){
            break;
         
      }
-     //console.log(`${password}  ${email}`)
+  
     }
 
 
@@ -53,13 +53,6 @@ export default function UserSignUp(props){
           
       }
 
-    //   {
-    //     "firstName": "Joe",
-    //     "lastName": "Know",
-    //     "password": "knowjoe",
-    //     "emailAddress": "knowjoe@email.com"
-    // }
-
 
       //Create the User
       context.data.createUser(user).then((out)=>{
@@ -70,10 +63,10 @@ export default function UserSignUp(props){
         else{  
           
             context.actions.signIn(email,password).then((user)=>{
-            // console.log(`This is the user ${user}`)
+            
               if (user !==null)
               {
-               //console.log(props);
+              
                 if (props.location.state)
                 { 
                 props.history.push(props.location.state.from.pathname);
@@ -81,7 +74,7 @@ export default function UserSignUp(props){
                 else{
                 props.history.push("/")
                 }
-                //props.history.push("/")
+               
               }   
             })
             .catch((error)=>{

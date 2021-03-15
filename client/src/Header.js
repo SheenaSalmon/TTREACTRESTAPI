@@ -13,7 +13,7 @@ function Header(){
         <div className="header">
         <div className="bounds">
           <h1 className="header--logo"><Link  to ="/">Courses</Link></h1>
-          {/* <p>{context.authenticatedUser? context.authenticatedUser.emailAddress : ""}</p> */}
+        {/* Display based on whether use is logged in or out */}
           <nav>{context.authenticatedUser ? loggedIn : loggedOut}</nav>
         </div>
       </div>

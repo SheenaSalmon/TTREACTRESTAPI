@@ -1,5 +1,4 @@
-// File base on TeamTreeHouse 
-
+// File based on TeamTreeHouse 
 
 
 export default class Data{
@@ -53,8 +52,7 @@ export default class Data{
     async createUser(user)
     {
         const response = await this.api('/users', 'POST', user);
-        console.log(`This is the user in data ${user.firstName}`)
-
+       
         if(response.status === 201)
         {
             return [];
@@ -94,7 +92,7 @@ export default class Data{
         else{
             throw new Error();
         }
-        //console.log(`This is course response:${Object.entries(course)}`)
+      
     }
 
     async updateCourse(user,course)
@@ -102,7 +100,7 @@ export default class Data{
         const response = await this.api(`/courses/${course.id}`,'PUT',course,true,user);
         if(response.status===204)
         {
-            console.log(`This is course response:${Object.entries(course)}`)
+           
             return []
         }
 

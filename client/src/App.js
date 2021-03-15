@@ -1,8 +1,4 @@
-
-import React,{useEffect,useState} from "react"
-
-
-import {Link,BrowserRouter as  Router, Switch,Route}  from "react-router-dom"
+import {BrowserRouter as  Router, Switch,Route}  from "react-router-dom"
 import PrivateRoute from './PrivateRoute'
 import Header from "./Header"
 import Courses from "./Courses"
@@ -15,7 +11,7 @@ import UpdateCourse from "./UpdateCourse";
 
 function App() {
 
-  
+    //course/:id/update and /courses/create are PrivateRoutes so that you must be authenticated to visit those urls
   return (
     <div className="App">
       <Router>

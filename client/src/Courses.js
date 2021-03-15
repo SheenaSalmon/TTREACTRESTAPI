@@ -3,6 +3,7 @@ import {CourseContext} from "./Context";
 import Course from "./Course";
 import {Link} from "react-router-dom"
 
+//maps through courses and display each of the course and the create course button 
 export default function Courses(props)
 {
 

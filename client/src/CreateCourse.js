@@ -10,6 +10,7 @@ export default function CreateCourse(props) {
     const [materialsNeeded,setMaterialsNeeded]= useState("")
     const [errors,setErrors]=useState(null);
 
+  //Sets the state values when changed in the form fields    
     const handleChange=(e)=>  {
         switch (e.target.name) {
             case "description":
@@ -29,6 +30,8 @@ export default function CreateCourse(props) {
         }
     }
 
+
+    //The use function called when the form is submitted to create a new 
     const handleSubmit=(e)=>
     {
      
@@ -36,7 +39,8 @@ export default function CreateCourse(props) {
         const course ={description,title,estimatedTime,materialsNeeded}
         context.actions.createCourse(course).then((out)=>        
         {
-         console.log(out);
+        
+          //a array with values is return if there are errors is added to the errors state withe setErrors
          if (out && out.length>0)
          {setErrors(out);}
          else
@@ -56,6 +60,7 @@ export default function CreateCourse(props) {
         <div className="bounds course--detail">
         <h1>Create Course</h1>
         <div>
+          {/* If there are errors, then they are displayed here */}
           {errors? <ErrorDisplay errors={errors} />:""}
          
         

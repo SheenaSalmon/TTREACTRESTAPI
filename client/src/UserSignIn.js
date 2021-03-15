@@ -2,6 +2,8 @@ import React, { useContext, useState} from "react";
 import {CourseContext} from "./Context";
 import {Link} from "react-router-dom"
 
+
+
 export default function UserSignIn(props){
     const context=useContext(CourseContext);
     const [email,setEmail]=useState("");
@@ -22,23 +24,24 @@ export default function UserSignIn(props){
            break;
         
      }
-     console.log(`${password}  ${email}`)
+     
     }
 
+      //Signs the user in ther redirector to the prior page
     const handleSubmit=(e)=>
     {
       e.preventDefault();
       context.actions.signIn(email,password).then((user)=>{
-       // console.log(`This is the user ${user}`)
+      
         if (user !==null)
         {
-          //console.log(props);
+      
           if (props.location.state)
          { props.history.push(props.location.state.from.pathname);}
          else{
            props.history.push("/")
          }
-         // console.log(`The user is authenticated ${context.authenticatedUser.firstName}`)
+      
         }
         else
 
@@ -60,7 +63,7 @@ export default function UserSignIn(props){
           <div>
 
 
-            {/* //<form onSubmit={handleSubmit}> */}
+          
               <form>
               <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange}/></div>
               

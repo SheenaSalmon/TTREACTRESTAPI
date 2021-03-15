@@ -13,7 +13,7 @@ export default function UpdateCourse(props) {
 
     useEffect(()=>{
 
-      console.log(`This is the course id ${props.match.params.id}`);
+      //Loads the Course information and populates there respective state values
         context.actions.getCourseDetail(props.match.params.id).then(()=>
         {
             const course=context.currentCourse;
@@ -52,12 +52,13 @@ export default function UpdateCourse(props) {
         }
     }
 
+    //Send update request;sets errors if any are returned, otherwise redirect the user to the main page
     const handleSubmit=(e)=>
     {
      
         e.preventDefault();
         const course ={...context.currentCourse,description,title,estimatedTime,materialsNeeded};
-        console.log(Object.entries(course));
+        
        context.actions.updateCourse(course).then((out)=>
        {
           setErrors(out);
