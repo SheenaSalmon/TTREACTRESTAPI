@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react"
+import React, {useContext, useEffect,useState} from "react"
 import {Link} from "react-router-dom";
 import ReactMarkdown from "react-markdown"
 
@@ -6,17 +6,18 @@ import {CourseContext} from "./Context"
 
 
 export default function  CourseDetail(props) {
-    const context=useContext(CourseContext);     
-
+    const context=useContext(CourseContext);
      
+
     useEffect(()=>{
-     //Load the course information
+
+      
         context.actions.getCourseDetail(props.match.params.id)
         
 
     },[])
    
-    //function called to delete course and redirect to main page
+    
     const deleteCourse=(course)=>{
       context.actions.deleteCourse(course).then(()=>
       props.history.push("/")
@@ -31,13 +32,12 @@ export default function  CourseDetail(props) {
               <p>By Joe Smith</p>
             </div>
             <div className="course--description">
-              {/* Creates a markdown from description data returned from api call */}
              <ReactMarkdown children={context.currentCourse.description}/> 
             </div>
           </div>
           </div>;
     
-    //if(authenticatedUser.id===course.User.id)
+    
 
     const courseHeader= <div className="actions--bar">
     <div className="bounds">
@@ -57,7 +57,6 @@ export default function  CourseDetail(props) {
       </li>
       <li className="course--stats--list--item">
         <h4>Materials Needed</h4>
-         {/* Creates a markdown from description data returned from api call */}
         <ul><ReactMarkdown children={context.currentCourse.materialsNeeded} /> </ul>
       
       </li>
@@ -65,7 +64,7 @@ export default function  CourseDetail(props) {
   </div>
 </div>    
     
-//Displays the course details of the course with the matching id
+
     return(
         <div>
             {courseHeader}
@@ -77,3 +76,10 @@ export default function  CourseDetail(props) {
     
 }
 
+///</div>const getCourseDetail = async (id)=>{
+//     const course= await data.getCourse(id);
+//     if (course !== null)
+//     {
+//         return(course);
+//     }
+// }
