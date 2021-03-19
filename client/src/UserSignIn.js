@@ -65,9 +65,10 @@ export default function UserSignIn(props){
 
           
               <form>
-              <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange}/></div>
+              <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange} autoComplete="username"/></div>
               
-              <div><input id="password" name="password" type="password" className="" placeholder="Password" value={password} onChange={handleChange}/></div>
+              <div><input id="password" name="password" type="password" className="" placeholder="Password" value={password} onChange={handleChange}
+              autoComplete="current-password"/></div>
               <div className="grid-100 pad-bottom">
                   <button className="button" type="submit" onClick={(e)=>{handleSubmit(e)}}>Sign In</button>
                   <button className="button button-secondary" onClick={(e)=>{e.preventDefault(); props.history.push("/") }}>Cancel</button>

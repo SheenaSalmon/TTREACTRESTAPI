@@ -56,8 +56,8 @@ export default function UserSignUp(props){
 
       //Create the User
       context.data.createUser(user).then((out)=>{
-        console.log(`This is the user ${user.firstName} ${out}`)
-        console.log( Object.entries(out));
+      
+        
         if( out.length>0)
         {setErrors(out);}//add all th errors to the errors state
         else{  
@@ -95,12 +95,12 @@ export default function UserSignUp(props){
       {/* Display the Errors */}
             <ErrorDisplay errors={errors}/> 
             <form onSubmit={handleSubmit}>
-            <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={firstName} onChange={handleChange}/></div>
-            <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value={lastName} onChange={handleChange}/></div>
-              <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange}/></div>
+            <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={firstName} onChange={handleChange} autoComplete="given-name"/></div>
+            <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value={lastName} onChange={handleChange} autoComplete="family-name"/></div>
+              <div><input id="email" name="email" type="text" className="" placeholder="Please enter you email address" value={email} onChange={handleChange} autoComplete="email"/></div>
               
-              <div><input id="password" name="password" type="password" className="" placeholder="Password" value={password} onChange={handleChange}/></div>
-              <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Password" value={confirmedPassword} onChange={handleChange}/></div>
+              <div><input id="password" name="password" type="password" className="" placeholder="Password" value={password} onChange={handleChange} autoComplete="new-password"/></div>
+              <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Password" value={confirmedPassword} onChange={handleChange} autoComplete="new-password"/></div>
               <div className="grid-100 pad-bottom">
                   <button className="button" type="submit">Sign Up</button>
                   <button className="button button-secondary" onClick={(e)=>{e.preventDefault(); props.history.push("/") }}>Cancel</button>

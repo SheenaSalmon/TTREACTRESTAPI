@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext,useEffect} from "react";
 import {CourseContext} from "./Context";
 import Course from "./Course";
 import {Link} from "react-router-dom"
@@ -8,7 +8,15 @@ export default function Courses(props)
 {
 
         const context = useContext(CourseContext);
-        context.actions.loadCourses();
+        useEffect(()=>{
+
+      
+            context.actions.loadCourses();
+            
+    
+        },[])
+
+        
 
         const courses= context.courses.map( (course) =>
         {
